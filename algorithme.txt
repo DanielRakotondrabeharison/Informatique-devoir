@@ -1,0 +1,53 @@
+Algorithme GénérerFormesCanoniques(f: Chaîne de caractères):
+    # Étape 1: Diviser la chaîne f en une liste de termes
+    liste ← DiviserEnTermes(f)
+    
+    # Étape 2: Initialiser la liste des éléments uniques
+    element ← []
+
+    # Étape 3: Parcourir chaque terme et ajouter les facteurs uniques à la liste des éléments
+    Pour chaque terme dans liste:
+        facteurs ← DiviserEnFacteurs(terme)
+        Pour chaque facteur dans facteurs:
+            Si facteur non présent dans element:
+                Ajouter facteur à element
+
+    # Étape 4: Générer toutes les combinaisons binaires possibles pour les variables a, b, et c
+    liste_bin ← GénérerCombinaisonsBinaires()
+
+    # Étape 5: Trier les éléments en fonction de leur longueur
+    Trier element par longueur
+
+    # Étape 6: Créer la liste totale en combinant les éléments uniques, les termes et 'f'
+    liste_total ← ConcaténerListes(element, liste, 'f')
+
+    # Étape 7: Initialiser une liste pour stocker les dictionnaires de valeurs de vérité
+    l_final ← []
+
+    # Étape 8: Pour chaque combinaison binaire, calculer les valeurs de vérité pour les termes
+    Pour chaque combinaison binaire dans liste_bin:
+        d ← CalculerValeursVerite(combinaison_binaire, liste_total)
+        Ajouter d à l_final
+
+    # Étape 9: Afficher la liste totale
+    Afficher liste_total
+
+    # Étape 10: Afficher une ligne de séparation
+    Afficher LigneSéparation
+
+    # Étape 11: Afficher les valeurs de vérité sous forme de tableau
+    AfficherTableau l_final
+
+    # Étape 12: Générer les combinaisons de variables avec ou sans négation
+    ass ← GénérerCombinaisonsVariables(element)
+
+    # Étape 13: Diviser les combinaisons en deux listes en fonction de la valeur de vérité de 'f'
+    res, res2 ← DiviserListes(ass, l_final)
+
+    # Étape 14: Générer les formes canoniques
+    premiere_forme ← GénérerPremiereFormeCanonique(res)
+    deuxieme_forme ← GénérerDeuxiemeFormeCanonique(res2)
+
+    # Étape 15: Afficher les formes canoniques
+    Afficher premiere_forme
+    Afficher deuxieme_forme
